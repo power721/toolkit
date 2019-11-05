@@ -7,7 +7,9 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-data class ShortUrl(val url: String, val shortUrl: String, @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null)
+data class ShortUrl(val shortUrl: String,
+                    val url: String,
+                    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null)
 
 interface ShortUrlRepository : JpaRepository<ShortUrl, Int> {
     fun existsByShortUrl(url: String): Boolean

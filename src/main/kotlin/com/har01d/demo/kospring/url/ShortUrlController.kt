@@ -1,10 +1,11 @@
 package com.har01d.demo.kospring.url
 
+import com.har01d.demo.kospring.core.exception.NotFoundException
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletResponse
 
 @RestController
-@RequestMapping("u")
+@RequestMapping("url")
 class ShortUrlController(private val service: ShortUrlService, private val repository: ShortUrlRepository) {
     @PostMapping
     fun create(@RequestBody dto: ShortUrlDto): String {
@@ -15,7 +16,7 @@ class ShortUrlController(private val service: ShortUrlService, private val repos
     fun route(@PathVariable url: String, response: HttpServletResponse) {
         val shortUrl = repository.findByShortUrl(url)
         if (shortUrl == null) {
-            response.sendError(404)
+            throw NotFoundException()
         } else {
             response.sendRedirect(shortUrl.url)
         }
