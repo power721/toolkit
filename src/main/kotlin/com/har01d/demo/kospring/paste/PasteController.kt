@@ -12,8 +12,18 @@ class PasteController(private val service: PasteService, private val repository:
     }
 
     @GetMapping("/{url}")
-    fun get(@PathVariable url: String): Paste? {
+    fun get(@PathVariable url: String): Paste {
         return repository.findByShortUrl(url) ?: throw NotFoundException()
+    }
+
+    @GetMapping("/{url}/plain")
+    fun getPlain(@PathVariable url: String): String {
+        val paste = repository.findByShortUrl(url)
+        if (paste == null) {
+            throw NotFoundException()
+        } else {
+            return paste.content
+        }
     }
 
     @DeleteMapping("/{url}")
