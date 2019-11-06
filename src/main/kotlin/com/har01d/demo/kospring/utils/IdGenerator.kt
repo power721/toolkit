@@ -13,6 +13,15 @@ object IdGenerator {
         return encode(number)
     }
 
+    fun generate(length: Int): String {
+        val sb = StringBuilder()
+        val random = ThreadLocalRandom.current()
+        for (i in 1..length) {
+            sb.append(TOKENS[random.nextInt(TOKENS.size)])
+        }
+        return sb.toString()
+    }
+
     fun encode(digits: Long): String {
         var number = digits
         if (number == 0L) {

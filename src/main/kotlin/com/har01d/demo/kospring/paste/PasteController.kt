@@ -1,6 +1,6 @@
 package com.har01d.demo.kospring.paste
 
-import com.har01d.demo.kospring.core.exception.NotFoundException
+import com.har01d.demo.kospring.core.NotFoundException
 import org.springframework.web.bind.annotation.*
 
 @RestController

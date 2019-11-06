@@ -13,7 +13,7 @@ class ShortUrlService(private val repository: ShortUrlRepository) {
 
         var sUrl: String
         do {
-            sUrl = IdGenerator.generate()
+            sUrl = IdGenerator.generate(6)
         } while (repository.existsByShortUrl(sUrl))
         return repository.save(ShortUrl(sUrl, url))
     }
