@@ -1,7 +1,9 @@
 package com.har01d.toolkit.random
 
 import com.har01d.toolkit.utils.IdGenerator
+import org.apache.commons.io.IOUtils
 import org.springframework.context.ApplicationContext
+import org.springframework.core.io.Resource
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -21,8 +23,8 @@ class RandomController(private val context: ApplicationContext) {
 
     @PostConstruct
     fun init() {
-        words = context.getResource("classpath:data/words.txt").file.readLines()
-        names = context.getResource("classpath:data/names.txt").file.readLines().map { it.capitalize() }
+        words = context.getResource("classpath:data/words.txt").readLines()
+        names = context.getResource("classpath:data/words.txt").readLines().map { it.capitalize() }
     }
 
     @GetMapping("id")
@@ -82,3 +84,5 @@ class RandomController(private val context: ApplicationContext) {
     @GetMapping("uuid")
     fun uuid() = UUID.randomUUID().toString()
 }
+
+fun Resource.readLines(): MutableList<String> = IOUtils.readLines(this.inputStream, "UTF-8")
