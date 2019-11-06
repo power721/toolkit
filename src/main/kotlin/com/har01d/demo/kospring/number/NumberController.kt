@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("number")
-class NumberController {
+class NumberController(private val service: NumberService) {
     @PostMapping("convert")
     fun convert(@RequestParam(name = "value", required = false, defaultValue = "100") value: String,
                 @RequestParam(name = "radix", required = false, defaultValue = "10") radix: Int): Number {
@@ -24,6 +24,11 @@ class NumberController {
     fun convertNumber(@PathVariable fromRadix: Int,
                       @PathVariable toRadix: Int,
                       value: String) = value.toLong(fromRadix).toString(toRadix).toUpperCase()
+
+    @PostMapping("convert/words")
+    fun toWords(value: Int): NumberWords {
+        return NumberWords(service.toEnglishWords(value), service.toChineseWords(value), service.toTraditionalWords(value))
+    }
 }
 
 data class Number(val binary: String,
@@ -35,3 +40,5 @@ data class Number(val binary: String,
                   val hex: String,
                   val vigesimal: String,
                   val base36: String)
+
+data class NumberWords(val english: String, val chinese: String, val traditional: String)
