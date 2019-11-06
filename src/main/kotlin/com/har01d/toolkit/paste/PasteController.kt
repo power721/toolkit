@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.paste
+package com.har01d.toolkit.paste
 
-import com.har01d.demo.kospring.core.NotFoundException
+import com.har01d.toolkit.core.NotFoundException
 import org.springframework.web.bind.annotation.*
 
 @RestController

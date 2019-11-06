@@ -1,4 +1,4 @@
-package com.har01d.demo.kospring.time
+package com.har01d.toolkit.time
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

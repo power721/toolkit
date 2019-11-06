@@ -1,4 +1,4 @@
-package com.har01d.demo.kospring.utils
+package com.har01d.toolkit.utils
 
 import java.util.concurrent.ThreadLocalRandom
 

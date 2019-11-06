@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.random
+package com.har01d.toolkit.random
 
-import com.har01d.demo.kospring.core.BadRequestException
+import com.har01d.toolkit.core.BadRequestException
 import java.util.concurrent.ThreadLocalRandom
 
 object PasswordGenerator {

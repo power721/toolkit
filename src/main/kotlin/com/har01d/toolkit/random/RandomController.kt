@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.random
+package com.har01d.toolkit.random
 
-import com.har01d.demo.kospring.utils.IdGenerator
+import com.har01d.toolkit.utils.IdGenerator
 import org.springframework.context.ApplicationContext
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

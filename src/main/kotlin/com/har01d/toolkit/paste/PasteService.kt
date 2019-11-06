@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.paste
+package com.har01d.toolkit.paste
 
-import com.har01d.demo.kospring.utils.IdGenerator
+import com.har01d.toolkit.utils.IdGenerator
 import org.springframework.stereotype.Service
 
 @Service

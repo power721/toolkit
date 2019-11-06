@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.random
+package com.har01d.toolkit.random
 
-import com.har01d.demo.kospring.core.BadRequestException
+import com.har01d.toolkit.core.BadRequestException
 
 class Snowflake(private val datacenterId: Int, private val workerId: Int) {
     private val epoch = 1573008493430L

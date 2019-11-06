@@ -1,10 +1,10 @@
-package com.har01d.demo.kospring
+package com.har01d.toolkit
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class KoSpringApplicationTests {
+class ToolkitApplicationTests {
 
     @Test
     fun contextLoads() {

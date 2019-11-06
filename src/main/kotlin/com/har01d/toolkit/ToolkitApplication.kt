@@ -1,11 +1,11 @@
-package com.har01d.demo.kospring
+package com.har01d.toolkit
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KoSpringApplication
+class ToolkitApplication
 
 fun main(args: Array<String>) {
-    runApplication<KoSpringApplication>(*args)
+    runApplication<ToolkitApplication>(*args)
 }

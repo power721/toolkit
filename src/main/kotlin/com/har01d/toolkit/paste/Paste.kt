@@ -1,4 +1,4 @@
-package com.har01d.demo.kospring.paste
+package com.har01d.toolkit.paste
 
 import org.springframework.data.jpa.repository.JpaRepository
 import java.time.Instant

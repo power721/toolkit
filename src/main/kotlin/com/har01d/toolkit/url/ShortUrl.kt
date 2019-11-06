@@ -1,4 +1,4 @@
-package com.har01d.demo.kospring.url
+package com.har01d.toolkit.url
 
 import org.springframework.data.jpa.repository.JpaRepository
 import javax.persistence.Entity

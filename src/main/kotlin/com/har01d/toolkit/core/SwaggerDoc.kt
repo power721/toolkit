@@ -1,4 +1,4 @@
-package com.har01d.demo.kospring.core
+package com.har01d.toolkit.core
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

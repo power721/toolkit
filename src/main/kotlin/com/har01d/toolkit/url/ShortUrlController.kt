@@ -1,6 +1,6 @@
-package com.har01d.demo.kospring.url
+package com.har01d.toolkit.url
 
-import com.har01d.demo.kospring.core.NotFoundException
+import com.har01d.toolkit.core.NotFoundException
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletResponse
 
