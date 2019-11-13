@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct
 @Service
 class RandomService(private val context: ApplicationContext) {
     companion object {
+        private val CHARS = "abcdefghijklmnopqrstuvwxyz".toCharArray()
         private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu")
         private val COLORS = arrayOf("white", "silver", "gray", "black", "red", "maroon", "yellow", "olive", "lime", "green", "aqua", "teal", "blue", "navy", "fuchsia", "purple",
                 "pink", "salmon", "crimson", "firebrick", "tomato", "coral", "orange", "moccasin", "gold", "brown", "cyan", "violet", "indigo")
@@ -112,6 +113,41 @@ class RandomService(private val context: ApplicationContext) {
     fun gaussian() = ThreadLocalRandom.current().nextGaussian()
 
     fun string(length: Int) = IdGenerator.generate(length)
+
+    fun paragraph(min: Int = 3, max: Int = 7): String {
+        val random = ThreadLocalRandom.current()
+        val sb = StringBuilder()
+        val count = random.nextInt(min, max + 1)
+        for (i in 1..count) {
+            sb.append(sentence())
+        }
+        sb.append('.')
+        return sb.toString().capitalize()
+    }
+
+    fun sentence(min: Int = 7, max: Int = 12): String {
+        val random = ThreadLocalRandom.current()
+        val sb = StringBuilder()
+        val count = random.nextInt(min, max + 1)
+        for (i in 1..count) {
+            if (i > 1) {
+                sb.append(' ')
+            }
+            sb.append(lorem())
+        }
+        sb.append('.')
+        return sb.toString().capitalize()
+    }
+
+    fun lorem(min: Int = 3, max: Int = 10): String {
+        val random = ThreadLocalRandom.current()
+        val sb = StringBuilder()
+        val count = random.nextInt(min, max + 1)
+        for (i in 1..count) {
+            sb.append(CHARS[random.nextInt(CHARS.size)])
+        }
+        return sb.toString()
+    }
 
     fun uuid() = UUID.randomUUID().toString()
 

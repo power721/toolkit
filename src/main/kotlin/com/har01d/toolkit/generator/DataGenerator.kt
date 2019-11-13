@@ -22,6 +22,8 @@ class DataGenerator(private val randomService: RandomService) {
                 "datetime|date|timezone|timestamp|time|" +
                 "uuid|email|color|ip|mac|version|" +
                 "string\\[(\\d+)\\]|string|" +
+                "sentence\\[(\\d+),\\s*(\\d+)\\]|sentence\\[(\\d+)\\]|sentence|" +
+                "paragraph\\[(\\d+),\\s*(\\d+)\\]|paragraph\\[(\\d+)\\]|paragraph|" +
                 "enum\\[(.+)\\])\\}?)")
     }
 
@@ -78,8 +80,8 @@ class DataGenerator(private val randomService: RandomService) {
     // timezone  -->  "Asia/Taipei", "America/Godthab"
     // uuid  -->  "aaad1003-4ecc-4c32-8372-549cee76a7dd"
     // string  -->  "GRvLv95h1vsC", "XsjZ1FgiRLVo"
-    // sentence
-    // paragraph
+    // sentence, sentence[7], sentence[7,12]
+    // paragraph, paragraph[3], paragraph[3,7]
     // email  -->  "Harold.Li@emc.com", "123456789@qq.com"
     // username
     // color  -->  "Red", "Green", "Pink"
@@ -180,6 +182,28 @@ class DataGenerator(private val randomService: RandomService) {
                 length = Integer.parseInt(params)
             }
             return randomService.string(length)
+        } else if (type == "sentence") {
+            var min = 7
+            var max = 12
+            if (params != null) {
+                val parts = params.split(",")
+                min = parts[0].toInt()
+                if (parts.size == 2) {
+                    max = parts[1].toInt()
+                }
+            }
+            return randomService.sentence(min, max)
+        } else if (type == "paragraph") {
+            var min = 3
+            var max = 7
+            if (params != null) {
+                val parts = params.split(",")
+                min = parts[0].toInt()
+                if (parts.size == 2) {
+                    max = parts[1].toInt()
+                }
+            }
+            return randomService.paragraph(min, max)
         } else if (type == "enum") {
             if (params != null) {
                 val parts = params.split(",")
