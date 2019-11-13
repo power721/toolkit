@@ -119,9 +119,11 @@ class RandomService(private val context: ApplicationContext) {
         val sb = StringBuilder()
         val count = random.nextInt(min, max + 1)
         for (i in 1..count) {
+            if (i > 1) {
+                sb.append(' ')
+            }
             sb.append(sentence())
         }
-        sb.append('.')
         return sb.toString().capitalize()
     }
 
@@ -129,11 +131,15 @@ class RandomService(private val context: ApplicationContext) {
         val random = ThreadLocalRandom.current()
         val sb = StringBuilder()
         val count = random.nextInt(min, max + 1)
+        val sep = count > 9 && random.nextInt(100) < 10
         for (i in 1..count) {
             if (i > 1) {
                 sb.append(' ')
             }
-            sb.append(lorem())
+            sb.append(word())
+            if (sep && i == count / 2) {
+                sb.append(',')
+            }
         }
         sb.append('.')
         return sb.toString().capitalize()
