@@ -138,7 +138,7 @@ class DataGenerator(private val randomService: RandomService) {
             if (params != null) {
                 length = Integer.parseInt(params)
             }
-            return PasswordGenerator.generate(length)
+            return PasswordGenerator.generate(length).replace("$", "\\$")
         } else if (type == "hex") {
             var count = 3
             if (params != null) {
