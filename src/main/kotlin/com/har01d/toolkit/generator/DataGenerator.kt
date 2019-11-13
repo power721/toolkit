@@ -20,7 +20,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
                 "datetime|date|timezone|timestamp|time|" +
-                "uuid|email|color|ip|mac|version|" +
+                "uuid|email|color|ip|mac|version|domain|url|" +
                 "string\\[(\\d+)\\]|string|" +
                 "sentence\\[(\\d+),\\s*(\\d+)\\]|sentence\\[(\\d+)\\]|sentence|" +
                 "paragraph\\[(\\d+),\\s*(\\d+)\\]|paragraph\\[(\\d+)\\]|paragraph|" +
@@ -29,7 +29,7 @@ class DataGenerator(private val randomService: RandomService) {
 
     fun generate(template: String, size: Int = 10): String {
         val sb = StringBuffer()
-        sb.append("[")
+        sb.append("[\n")
 
         val id = IdHolder()
         for (i in 1..size) {
@@ -45,7 +45,7 @@ class DataGenerator(private val randomService: RandomService) {
             }
             matcher.appendTail(sb);
         }
-        sb.append("]")
+        sb.append("\n]")
         return sb.toString()
     }
 
@@ -90,8 +90,8 @@ class DataGenerator(private val randomService: RandomService) {
     // phone
     // company  --> "Apple", "Alphabet"
     // language
-    // domain
-    // url
+    // domain  -->  "google.com"
+    // url  -->  "https://www.google.com/test"
     // ip  -->  "10.121.235.200", "216.58.196.174"
     // mac  -->  "00:50:56:af:e5:bf"
     // version  -->  "6.1.10", "1.8.201", "10.16.3"
@@ -168,6 +168,10 @@ class DataGenerator(private val randomService: RandomService) {
             return randomService.uuid()
         } else if (type == "email") {
             return randomService.email()
+        } else if (type == "domain") {
+            return randomService.domain()
+        } else if (type == "url") {
+            return randomService.url()
         } else if (type == "color") {
             return randomService.color()
         } else if (type == "ip") {

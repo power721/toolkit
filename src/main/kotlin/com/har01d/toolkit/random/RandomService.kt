@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct
 class RandomService(private val context: ApplicationContext) {
     companion object {
         private val CHARS = "abcdefghijklmnopqrstuvwxyz".toCharArray()
-        private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu")
+        private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu", ".io")
         private val COLORS = arrayOf("white", "silver", "gray", "black", "red", "maroon", "yellow", "olive", "lime", "green", "aqua", "teal", "blue", "navy", "fuchsia", "purple",
                 "pink", "salmon", "crimson", "firebrick", "tomato", "coral", "orange", "moccasin", "gold", "brown", "cyan", "violet", "indigo")
     }
@@ -26,12 +26,14 @@ class RandomService(private val context: ApplicationContext) {
     private lateinit var names: List<String>
     private lateinit var countries: List<String>
     private lateinit var companies: List<String>
+    private lateinit var websites: List<String>
 
     @PostConstruct
     fun init() {
         words = context.getResource("classpath:data/words.txt").readLines()
         countries = context.getResource("classpath:data/countries.txt").readLines()
         companies = context.getResource("classpath:data/companies.txt").readLines()
+        websites = context.getResource("classpath:data/websites.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
     }
 
@@ -50,6 +52,10 @@ class RandomService(private val context: ApplicationContext) {
     fun country() = countries[ThreadLocalRandom.current().nextInt(countries.size)]
 
     fun company() = companies[ThreadLocalRandom.current().nextInt(companies.size)]
+
+    fun domain() = websites[ThreadLocalRandom.current().nextInt(websites.size)]
+
+    fun url() = "https://" + word() + "." + domain() + "/" + word()
 
     fun color() = COLORS[ThreadLocalRandom.current().nextInt(COLORS.size)]
 
