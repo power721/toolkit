@@ -24,11 +24,13 @@ class RandomService(private val context: ApplicationContext) {
     private lateinit var words: List<String>
     private lateinit var names: List<String>
     private lateinit var countries: List<String>
+    private lateinit var companies: List<String>
 
     @PostConstruct
     fun init() {
         words = context.getResource("classpath:data/words.txt").readLines()
         countries = context.getResource("classpath:data/countries.txt").readLines()
+        companies = context.getResource("classpath:data/companies.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
     }
 
@@ -45,6 +47,8 @@ class RandomService(private val context: ApplicationContext) {
     fun word() = words[ThreadLocalRandom.current().nextInt(words.size)]
 
     fun country() = countries[ThreadLocalRandom.current().nextInt(countries.size)]
+
+    fun company() = companies[ThreadLocalRandom.current().nextInt(companies.size)]
 
     fun color() = COLORS[ThreadLocalRandom.current().nextInt(COLORS.size)]
 

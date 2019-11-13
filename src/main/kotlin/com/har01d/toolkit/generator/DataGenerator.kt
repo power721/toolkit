@@ -16,7 +16,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "boolean|" +
                 "number\\[(\\d+),\\s*(\\d+)\\]|number\\[(\\d+)\\]|number|" +
                 "double\\[(\\d+),\\s*(\\d+)\\]|double\\[(\\d+)\\]|double|" +
-                "word|fullname|name|country|" +
+                "word|fullname|name|country|company|" +
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
                 "datetime|date|timezone|timestamp|time|" +
@@ -86,7 +86,7 @@ class DataGenerator(private val randomService: RandomService) {
     // country  -->  "China"
     // city
     // phone
-    // company
+    // company  --> "Apple", "Alphabet"
     // language
     // domain
     // url
@@ -160,6 +160,8 @@ class DataGenerator(private val randomService: RandomService) {
             return randomService.timezone()
         } else if (type == "country") {
             return randomService.country()
+        } else if (type == "company") {
+            return randomService.company()
         } else if (type == "uuid") {
             return randomService.uuid()
         } else if (type == "email") {

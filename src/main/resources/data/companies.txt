@@ -1,0 +1,425 @@
+Walmart
+Sinopec Group
+Royal Dutch Shell
+State Grid
+Saudi Aramco
+BP
+Exxon Mobil
+Volkswagen
+Toyota Motor
+Apple
+Berkshire Hathaway
+Amazon.com
+UnitedHealth Group
+Samsung Electronics
+Glencore
+McKesson
+Daimler
+CVS Health
+Total
+Trafigura Group
+EXOR Group
+AT&T
+AmerisourceBergen
+Chevron
+Ping An Insurance
+Ford Motor
+General Motors
+Mitsubishi
+Honda Motor
+Costco Wholesale
+Alphabet
+Cardinal Health
+SAIC Motor
+Gazprom
+Bank of China
+Allianz
+AXA
+Kroger
+General Electric
+Fannie Mae
+Lukoil
+Japan Post Holdings
+BMW Group
+Phillips 66
+Valero Energy
+Microsoft
+Huawei
+Home Depot
+Itochu
+Nissan Motor
+Boeing
+Wells Fargo
+Siemens
+Citigroup
+Marathon Petroleum
+SK Holdings
+Petrobras
+Comcast
+Nestlé
+Bosch Group
+Uniper
+Anthem
+Carrefour
+ENI
+Dell Technologies
+Banco Santander
+Rosneft Oil
+Sinochem Group
+Enel
+Deutsche Telekom
+Crédit Agricole
+Hyundai Motor
+Pemex
+Peugeot
+SoftBank Group
+HSBC Holdings
+DuPont
+China Post Group
+Hitachi
+Tesco
+BNP Paribas
+JXTG Holdings
+Reliance Industries
+Johnson & Johnson
+China Minmetals
+Equinor
+BASF
+Sony
+Indian Oil
+AEON
+ArcelorMittal
+Target
+Airbus
+Engie
+Freddie Mac
+PTT
+Panasonic
+Lowe's
+COFCO
+Intel
+CITIC Group
+JD.com
+MetLife
+Renault
+ChemChina
+Munich Re Group
+Procter & Gamble
+Marubeni
+United Technologies
+FedEx
+PepsiCo
+Mitsui
+Petronas
+Seven & I Holdings
+Oil & Natural Gas
+PowerChina
+Toyota Tsusho
+Roche Group
+Auchan Holding
+Albertsons Cos.
+Unilever
+Centene
+Sinopharm
+Walt Disney
+POSCO
+Sysco
+HP
+Société Générale
+Pertamina
+Telefónica
+Humana
+Alibaba
+RWE
+Facebook
+LG Electronics
+Christian Dior
+Caterpillar
+Energy Transfer
+Wesfarmers
+América Móvil
+Lockheed Martin
+Pfizer
+Repsol
+Novartis
+Continental
+Vinci
+Finatis
+Deutsche Bahn
+Lenovo Group
+Industrial Bank
+HBIS Group
+ThyssenKrupp
+Vodafone Group
+Morgan Stanley
+JBS
+Banco Bradesco
+Groupe BPCE
+Cisco Systems
+Saint-Gobain
+Kia Motors
+Orange
+Cigna
+Denso
+Sumitomo
+Woolworths Group
+State Bank of India
+Tencent Holdings
+Deutsche Bank
+Bayer
+HCA Healthcare
+KDDI
+BHP Group
+Bunge
+CNP Assurances
+Sinomach
+SABIC
+Volvo
+China Vanke
+Sberbank
+Pegatron
+Delta Air Lines
+Hanwha
+Tata Motors
+ZF Friedrichshafen
+Metro
+Banco do Brasil
+American Express
+Nationwide
+ACS
+UBS Group
+Bharat Petroleum
+Best Buy
+Jardine Matheson
+Talanx
+Lufthansa Group
+Merck
+Bouygues
+Sanofi
+Iberdrola
+Maersk Group
+GlaxoSmithKline
+TIAA
+Accenture
+Magna International
+Mitsubishi Electric
+Louis Dreyfus
+Rio Tinto Group
+Edeka Zentrale
+Tyson Foods
+Oracle
+Allstate
+World Fuel Services
+ING Group
+Centrica
+Midea Group
+Fresenius
+Intesa Sanpaolo
+TJX
+ConocoPhillips
+Barclays
+J. Sainsbury
+George Weston
+SNCF Mobilités
+ABB
+Deere
+Tech Data
+Swiss Re
+Suning.com Group
+SK Hynix
+Vale
+XMXYG
+Aisin Seiki
+Nike
+General Dynamics
+Exelon
+Canon
+Enbridge
+E.ON
+Fujitsu
+Idemitsu Kosan
+Poste Italiane
+JFE Holdings
+Suzuki Motor
+CRRC Group
+Credit Suisse Group
+Quanta Computer
+Plains GP Holdings
+Toshiba
+Prudential
+Bridgestone
+China Electronics
+GS Caltex
+Sompo Holdings
+Schlumberger
+3M
+AbbVie
+Chubb
+CHS
+Ansteel Group
+Capital One Financial
+AIA Group
+Mazda Motor
+Compal Electronics
+Progressive
+DZ Bank
+Hyundai Mobis
+CPC
+Coca-Cola
+L'Oréal
+CRH
+Bank of Nova Scotia
+USAA
+Air France-KLM Group
+Compass Group
+Hewlett Packard
+BT Group
+Inditex
+Abbott Laboratories
+Micron Technology
+PKN ORLEN Group
+Schneider Electric
+Phoenix Pharma
+Travelers Cos.
+Coop Group
+Northrop Grumman
+Suncor Energy
+Manulife Financial
+Medtronic
+Arrow Electronics
+Koç Holding
+Wistron
+UniCredit Group
+SAP
+La Poste
+Northwestern Mutual
+Naturgy Energy Group
+Migros Group
+Danone
+Westpac Banking
+KB Financial Group
+Medipal Holdings
+Subaru
+CFE
+Samsung C&T
+Adecco Group
+Randstad
+LafargeHolcim
+INTL FCStone
+Anglo American
+Mapfre Group
+PBF Energy
+Financière de l'Odet
+East Japan Railway
+OMV Group
+Raytheon
+CJ Corp.
+Nokia
+Xiaomi
+NEC
+Kraft Heinz
+Flex
+Emirates Group
+Ceconomy
+Michelin
+Adidas
+Rabobank Group
+U.S. Bancorp
+Macy's
+Dollar General
+LG Chem
+Onex
+Safran
+Achmea
+Rajesh Exports
+Nucor
+Bank of Montreal
+Ultrapar Holdings
+Air Liquide
+Apple
+Microsoft
+Amazon
+Alphabet
+Berkshire Hathaway
+Facebook
+Alibaba
+Tencent Holdings
+JPMorgan Chase
+Johnson & Johnson
+Visa
+ExxonMobil
+ICBC
+Walmart
+Bank of America
+Nestle
+Samsung Electronics
+Procter & Gamble
+Royal Dutch Shell
+Intel
+Cisco Systems
+Mastercard
+Walt Disney
+AT&T
+Chevron
+Home Depot
+Nike
+Roche Holding
+Pfizer
+Wells Fargo
+Boeing
+UnitedHealth Group
+Coca-Cola
+PetroChina
+China Mobile
+Comcast
+Merck & Co.
+Oracle
+PepsiCo
+Kweichow Moutai
+Toyota Motor
+Novartis
+HSBC Holdings
+Citigroup
+Netflix
+Unilever
+L'Oréal
+BP
+Total
+McDonald's
+Bank of China
+BHP Group
+SAP
+Adobe
+China Merchantsank
+Abbott Laboratories
+Reliance Industries
+Broadcom
+3M
+PayPal
+Union Pacific
+IBM
+AIA Group
+Salesforce.com
+Eli Lilly
+United Technologies
+Novo Nordisk
+RBC
+AbbVie
+Accenture
+NVIDIA
+Medtronic
+Softbank
+Naspers
+Amgen
+Texas Instruments
+Costco Wholesale
+Sinopec
+AIRBUS
+TDank Group
+Allianz
+Sanofi
+Altria Group
+Rio Tinto
+AstraZeneca
+Linde
+Inditex
