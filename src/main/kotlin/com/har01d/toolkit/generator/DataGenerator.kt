@@ -16,7 +16,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "boolean|" +
                 "number\\[(\\d+),\\s*(\\d+)\\]|number\\[(\\d+)\\]|number|" +
                 "double\\[(\\d+),\\s*(\\d+)\\]|double\\[(\\d+)\\]|double|" +
-                "word|fullname|name|" +
+                "word|fullname|name|country|" +
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
                 "datetime|date|timezone|timestamp|time|" +
@@ -32,7 +32,7 @@ class DataGenerator(private val randomService: RandomService) {
         val id = IdHolder()
         for (i in 1..size) {
             if (i > 1) {
-                sb.append(",")
+                sb.append(",\n")
             }
             val matcher = TOKEN.matcher(template)
             while (matcher.find()) {
@@ -65,7 +65,7 @@ class DataGenerator(private val randomService: RandomService) {
 
     // id, id[1000]  -->  1000,1001, 1002
     // boolean  -->  true,false
-    // hex, hex[3]  --> ""
+    // hex, hex[3]  --> "0f75c1", "1a257d"
     // number, number[100], number[100,200]  -->  125,101,149
     // double, double[100.0], double[100.0,200.0]  -->  107.5,154.3,120.0
     // word  -->  "supervision", "graphs", "cattle"
@@ -75,7 +75,7 @@ class DataGenerator(private val randomService: RandomService) {
     // time  -->  "12:05:00", "20:35:19", "09:15:36"
     // datetime  -->  "2019-04-25 10:23:12", "2017-12-10 15:35:12"
     // timestamp  -->  1573523117, 1490141289
-    // timezone
+    // timezone  -->  "Asia/Taipei", "America/Godthab"
     // uuid  -->  "aaad1003-4ecc-4c32-8372-549cee76a7dd"
     // string  -->  "GRvLv95h1vsC", "XsjZ1FgiRLVo"
     // sentence
@@ -83,7 +83,7 @@ class DataGenerator(private val randomService: RandomService) {
     // email  -->  "Harold.Li@emc.com", "123456789@qq.com"
     // username
     // color  -->  "Red", "Green", "Pink"
-    // country
+    // country  -->  "China"
     // city
     // phone
     // company
@@ -91,7 +91,7 @@ class DataGenerator(private val randomService: RandomService) {
     // domain
     // url
     // ip  -->  "10.121.235.200", "216.58.196.174"
-    // mac
+    // mac  -->  "00:50:56:af:e5:bf"
     // version  -->  "6.1.10", "1.8.201", "10.16.3"
     // file
     // mime
@@ -158,6 +158,8 @@ class DataGenerator(private val randomService: RandomService) {
             return randomDateTime().toEpochSecond().toString()
         } else if (type == "timezone") {
             return randomService.timezone()
+        } else if (type == "country") {
+            return randomService.country()
         } else if (type == "uuid") {
             return randomService.uuid()
         } else if (type == "email") {

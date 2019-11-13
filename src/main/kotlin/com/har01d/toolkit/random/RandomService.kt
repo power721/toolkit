@@ -23,10 +23,12 @@ class RandomService(private val context: ApplicationContext) {
     private val map = ConcurrentHashMap<Int, Snowflake>()
     private lateinit var words: List<String>
     private lateinit var names: List<String>
+    private lateinit var countries: List<String>
 
     @PostConstruct
     fun init() {
         words = context.getResource("classpath:data/words.txt").readLines()
+        countries = context.getResource("classpath:data/countries.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
     }
 
@@ -41,6 +43,8 @@ class RandomService(private val context: ApplicationContext) {
     fun password(length: Int) = PasswordGenerator.generate(length)
 
     fun word() = words[ThreadLocalRandom.current().nextInt(words.size)]
+
+    fun country() = countries[ThreadLocalRandom.current().nextInt(countries.size)]
 
     fun color() = COLORS[ThreadLocalRandom.current().nextInt(COLORS.size)]
 
