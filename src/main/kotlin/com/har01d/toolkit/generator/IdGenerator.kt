@@ -1,4 +1,4 @@
-package com.har01d.toolkit.utils
+package com.har01d.toolkit.generator
 
 import java.util.concurrent.ThreadLocalRandom
 

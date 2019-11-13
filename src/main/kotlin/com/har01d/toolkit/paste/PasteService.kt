@@ -1,6 +1,6 @@
 package com.har01d.toolkit.paste
 
-import com.har01d.toolkit.utils.IdGenerator
+import com.har01d.toolkit.generator.IdGenerator
 import org.springframework.stereotype.Service
 
 @Service

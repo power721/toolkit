@@ -1,4 +1,4 @@
-package com.har01d.toolkit.random
+package com.har01d.toolkit.generator
 
 import com.har01d.toolkit.core.BadRequestException
 import java.util.concurrent.ThreadLocalRandom
@@ -7,7 +7,7 @@ object PasswordGenerator {
     private val lowerChars = "abcdefghijklmnopqrstuvwxyz".toCharArray()
     private val upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray()
     private val numbers = "0123456789".toCharArray()
-    private val special = "!@#$%^&*_+-=|".toCharArray()
+    private val special = "!@#%^&*_+-=|".toCharArray()
     private val all = lowerChars + upperChars + numbers + special
 
     fun generate(length: Int): String {
