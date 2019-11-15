@@ -20,7 +20,9 @@ class DataGenerator(private val randomService: RandomService) {
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
                 "datetime|date|timezone|timestamp|time|" +
-                "uuid|email|color|ip|mac|version|domain|url|" +
+                "uuid|email|color|ip|mac|version|domain|" +
+                "url\\[(\\d+)\\]|url|" +
+                "size\\[(.+)\\]|size|" +
                 "string\\[(\\d+)\\]|string|" +
                 "sentence\\[(\\d+),\\s*(\\d+)\\]|sentence\\[(\\d+)\\]|sentence|" +
                 "paragraph\\[(\\d+),\\s*(\\d+)\\]|paragraph\\[(\\d+)\\]|paragraph|" +
@@ -91,13 +93,14 @@ class DataGenerator(private val randomService: RandomService) {
     // company  --> "Apple", "Alphabet"
     // language
     // domain  -->  "google.com"
-    // url  -->  "https://www.google.com/test"
+    // url, url[1]  -->  "https://www.google.com/test"
     // ip  -->  "10.121.235.200", "216.58.196.174"
     // mac  -->  "00:50:56:af:e5:bf"
     // version  -->  "6.1.10", "1.8.201", "10.16.3"
     // file
     // mime
     // enum[E1,E2,E3]  -->  "E3", "E1", "E2"
+    // size, size[MB,GB]  --> "5 MB", "60 GB", "128 MB"
     fun generateValue(type: String, params: String?, id: IdHolder): String {
         if (type == "id") {
             var initial = 1000
@@ -171,7 +174,11 @@ class DataGenerator(private val randomService: RandomService) {
         } else if (type == "domain") {
             return randomService.domain()
         } else if (type == "url") {
-            return randomService.url()
+            var length = 1
+            if (params != null) {
+                length = Integer.parseInt(params)
+            }
+            return randomService.url(length)
         } else if (type == "color") {
             return randomService.color()
         } else if (type == "ip") {
@@ -214,6 +221,12 @@ class DataGenerator(private val randomService: RandomService) {
                 return parts[ThreadLocalRandom.current().nextInt(parts.size)].trim()
             }
             return ""
+        } else if (type == "size") {
+            if (params != null) {
+                val parts = params.split(",")
+                return randomService.size(parts)
+            }
+            return randomService.size()
         } else {
             return type
         }

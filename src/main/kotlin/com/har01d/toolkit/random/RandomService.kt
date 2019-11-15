@@ -55,7 +55,13 @@ class RandomService(private val context: ApplicationContext) {
 
     fun domain() = websites[ThreadLocalRandom.current().nextInt(websites.size)]
 
-    fun url() = "https://" + word() + "." + domain() + "/" + word()
+    fun url(suffixLen: Int = 1): String {
+        var text = "https://" + word() + "." + domain()
+        for (i in 1..suffixLen) {
+            text += "/" + word()
+        }
+        return text
+    }
 
     fun color() = COLORS[ThreadLocalRandom.current().nextInt(COLORS.size)]
 
@@ -182,6 +188,11 @@ class RandomService(private val context: ApplicationContext) {
     fun email(): String {
         val random = ThreadLocalRandom.current()
         return name(true).replace(' ', '.') + '@' + word() + DOMAINS[random.nextInt(DOMAINS.size)]
+    }
+
+    fun size(pool: List<String> = listOf("KB", "MB", "GB", "TB")): String {
+        val random = ThreadLocalRandom.current()
+        return random.nextInt(1024).toString() + " " + pool[random.nextInt(pool.size)]
     }
 }
 
