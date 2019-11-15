@@ -11,6 +11,7 @@ import java.util.regex.Pattern
 @Service
 class DataGenerator(private val randomService: RandomService) {
     companion object {
+        private val DELIMITER = Regex("\\s*,\\s*");
         private val TOKEN = Pattern.compile("(\\$\\{?(" +
                 "id\\[(\\d+)\\]|id|" +
                 "boolean|" +
@@ -23,6 +24,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "uuid|email|color|ip|mac|version|domain|" +
                 "url\\[(\\d+)\\]|url|" +
                 "size\\[(.+)\\]|size|" +
+                "hostname\\[(.+)\\]|hostname|" +
                 "string\\[(\\d+)\\]|string|" +
                 "sentence\\[(\\d+),\\s*(\\d+)\\]|sentence\\[(\\d+)\\]|sentence|" +
                 "paragraph\\[(\\d+),\\s*(\\d+)\\]|paragraph\\[(\\d+)\\]|paragraph|" +
@@ -62,7 +64,7 @@ class DataGenerator(private val randomService: RandomService) {
     fun extractParams(token: String): String? {
         val index = token.indexOf('[')
         if (index > -1) {
-            return token.substring(index + 1, token.length - 1)
+            return token.substring(index + 1, token.length - 1).trim()
         }
         return null
     }
@@ -84,7 +86,7 @@ class DataGenerator(private val randomService: RandomService) {
     // string  -->  "GRvLv95h1vsC", "XsjZ1FgiRLVo"
     // sentence, sentence[7], sentence[7,12]
     // paragraph, paragraph[3], paragraph[3,7]
-    // email  -->  "Harold.Li@emc.com", "123456789@qq.com"
+    // email  -->  "Harold.Li@gmail.com", "123456789@qq.com"
     // username
     // color  -->  "Red", "Green", "Pink"
     // country  -->  "China"
@@ -93,6 +95,7 @@ class DataGenerator(private val randomService: RandomService) {
     // company  --> "Apple", "Alphabet"
     // language
     // domain  -->  "google.com"
+    // hostname, hostname[google.com]  -->  test.google.com
     // url, url[1]  -->  "https://www.google.com/test"
     // ip  -->  "10.121.235.200", "216.58.196.174"
     // mac  -->  "00:50:56:af:e5:bf"
@@ -114,7 +117,7 @@ class DataGenerator(private val randomService: RandomService) {
             var lower = 0
             var upper = Int.MAX_VALUE
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 lower = parts[0].toInt()
                 if (parts.size == 2) {
                     upper = parts[1].toInt()
@@ -125,7 +128,7 @@ class DataGenerator(private val randomService: RandomService) {
             var lower = 0.0
             var upper = Int.MAX_VALUE.toDouble()
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 lower = parts[0].toDouble()
                 if (parts.size == 2) {
                     upper = parts[1].toDouble()
@@ -197,7 +200,7 @@ class DataGenerator(private val randomService: RandomService) {
             var min = 7
             var max = 12
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 min = parts[0].toInt()
                 if (parts.size == 2) {
                     max = parts[1].toInt()
@@ -208,7 +211,7 @@ class DataGenerator(private val randomService: RandomService) {
             var min = 3
             var max = 7
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 min = parts[0].toInt()
                 if (parts.size == 2) {
                     max = parts[1].toInt()
@@ -217,16 +220,22 @@ class DataGenerator(private val randomService: RandomService) {
             return randomService.paragraph(min, max)
         } else if (type == "enum") {
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 return parts[ThreadLocalRandom.current().nextInt(parts.size)].trim()
             }
             return ""
         } else if (type == "size") {
             if (params != null) {
-                val parts = params.split(",")
+                val parts = params.split(DELIMITER)
                 return randomService.size(parts)
             }
             return randomService.size()
+        } else if (type == "hostname") {
+            if (params != null) {
+                val parts = params.split(DELIMITER)
+                return randomService.hostname(parts)
+            }
+            return randomService.hostname()
         } else {
             return type
         }

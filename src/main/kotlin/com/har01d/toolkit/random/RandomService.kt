@@ -190,6 +190,14 @@ class RandomService(private val context: ApplicationContext) {
         return name(true).replace(' ', '.') + '@' + word() + DOMAINS[random.nextInt(DOMAINS.size)]
     }
 
+    fun hostname(pool: List<String> = listOf()): String {
+        val random = ThreadLocalRandom.current()
+        if (pool.isEmpty()) {
+            return word() + number(1, 999) + "." + domain();
+        }
+        return word() + number(1, 999) + "." + pool[random.nextInt(pool.size)]
+    }
+
     fun size(pool: List<String> = listOf("KB", "MB", "GB", "TB")): String {
         val random = ThreadLocalRandom.current()
         return random.nextInt(1024).toString() + " " + pool[random.nextInt(pool.size)]
