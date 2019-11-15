@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils
 import org.springframework.context.ApplicationContext
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
+import java.security.SecureRandom
 import java.time.ZoneId
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -16,12 +17,14 @@ import javax.annotation.PostConstruct
 class RandomService(private val context: ApplicationContext) {
     companion object {
         private val CHARS = "abcdefghijklmnopqrstuvwxyz".toCharArray()
+        private val WEEKDAYS = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
         private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu", ".io")
         private val COLORS = arrayOf("white", "silver", "gray", "black", "red", "maroon", "yellow", "olive", "lime", "green", "aqua", "teal", "blue", "navy", "fuchsia", "purple",
                 "pink", "salmon", "crimson", "firebrick", "tomato", "coral", "orange", "moccasin", "gold", "brown", "cyan", "violet", "indigo")
     }
 
     private val map = ConcurrentHashMap<Int, Snowflake>()
+    private val random = SecureRandom()
     private lateinit var words: List<String>
     private lateinit var names: List<String>
     private lateinit var countries: List<String>
@@ -51,15 +54,15 @@ class RandomService(private val context: ApplicationContext) {
 
     fun password(length: Int) = PasswordGenerator.generate(length)
 
-    fun word() = words[ThreadLocalRandom.current().nextInt(words.size)]
+    fun word() = words[random.nextInt(words.size)]
 
-    fun country() = countries[ThreadLocalRandom.current().nextInt(countries.size)]
+    fun country() = countries[random.nextInt(countries.size)]
 
-    fun company() = companies[ThreadLocalRandom.current().nextInt(companies.size)]
+    fun company() = companies[random.nextInt(companies.size)]
 
-    fun domain() = websites[ThreadLocalRandom.current().nextInt(websites.size)]
+    fun domain() = websites[random.nextInt(websites.size)]
 
-    fun mime() = mimes[ThreadLocalRandom.current().nextInt(mimes.size)]
+    fun mime() = mimes[random.nextInt(mimes.size)]
 
     fun file(): String {
         var text = word()
@@ -74,7 +77,7 @@ class RandomService(private val context: ApplicationContext) {
                 sep + word()
             }
         }
-        text += files[ThreadLocalRandom.current().nextInt(files.size)]
+        text += files[random.nextInt(files.size)]
         return if (sep.isEmpty()) {
             text.capitalize()
         } else {
@@ -90,7 +93,9 @@ class RandomService(private val context: ApplicationContext) {
         return text
     }
 
-    fun color() = COLORS[ThreadLocalRandom.current().nextInt(COLORS.size)]
+    fun color() = COLORS[random.nextInt(COLORS.size)]
+
+    fun weekday() = WEEKDAYS[random.nextInt(WEEKDAYS.size)]
 
     fun name(full: Boolean = false): String {
         val random = ThreadLocalRandom.current()
@@ -101,10 +106,9 @@ class RandomService(private val context: ApplicationContext) {
         }
     }
 
-    fun boolean() = ThreadLocalRandom.current().nextBoolean()
+    fun boolean() = random.nextBoolean()
 
     fun hex(count: Int = 3): String {
-        val random = ThreadLocalRandom.current()
         val sb = StringBuilder()
         for (i in 1..count) {
             val hex = random.nextInt(256).toString(16)
@@ -117,7 +121,6 @@ class RandomService(private val context: ApplicationContext) {
     }
 
     fun mac(): String {
-        val random = ThreadLocalRandom.current()
         val sb = StringBuilder()
         for (i in 1..6) {
             if (i > 1) {
@@ -137,7 +140,7 @@ class RandomService(private val context: ApplicationContext) {
         return random.nextInt(lower ?: 0, upper ?: Int.MAX_VALUE)
     }
 
-    fun int() = ThreadLocalRandom.current().nextInt()
+    fun int() = random.nextInt()
 
     fun long(lower: Long?, upper: Long?): Long {
         val random = ThreadLocalRandom.current()
@@ -149,7 +152,7 @@ class RandomService(private val context: ApplicationContext) {
         return random.nextDouble(lower ?: 0.0, upper ?: Double.MAX_VALUE)
     }
 
-    fun gaussian() = ThreadLocalRandom.current().nextGaussian()
+    fun gaussian() = random.nextGaussian()
 
     fun string(length: Int) = IdGenerator.generate(length)
 
@@ -207,18 +210,15 @@ class RandomService(private val context: ApplicationContext) {
     }
 
     fun timezone(): String {
-        val random = ThreadLocalRandom.current()
         val zones = ZoneId.getAvailableZoneIds().toList().filter { !it.startsWith("Etc") }
         return zones[random.nextInt(zones.size)]
     }
 
     fun email(): String {
-        val random = ThreadLocalRandom.current()
         return name(true).replace(' ', '.') + '@' + word() + DOMAINS[random.nextInt(DOMAINS.size)]
     }
 
     fun hostname(pool: List<String> = listOf()): String {
-        val random = ThreadLocalRandom.current()
         if (pool.isEmpty()) {
             return word() + number(1, 999) + "." + domain();
         }
@@ -226,7 +226,6 @@ class RandomService(private val context: ApplicationContext) {
     }
 
     fun size(pool: List<String> = listOf("KB", "MB", "GB", "TB")): String {
-        val random = ThreadLocalRandom.current()
         return random.nextInt(1024).toString() + " " + pool[random.nextInt(pool.size)]
     }
 }

@@ -20,7 +20,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "word|fullname|name|country|company|" +
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
-                "datetime|date|timezone|timestamp|time|" +
+                "datetime|date|timezone|timestamp|time|weekday|" +
                 "uuid|email|color|ip|mac|version|domain|mime|file|" +
                 "url\\[(\\d+)\\]|url|" +
                 "size\\[(.+)\\]|size|" +
@@ -80,6 +80,8 @@ class DataGenerator(private val randomService: RandomService) {
     // date  -->  "2019-09-25","2016-11-07", "2012-12-31"
     // time  -->  "12:05:00", "20:35:19", "09:15:36"
     // datetime  -->  "2019-04-25 10:23:12", "2017-12-10 15:35:12"
+    // month
+    // weekday  -->  "Friday", "Monday"
     // timestamp  -->  1573523117, 1490141289
     // timezone  -->  "Asia/Taipei", "America/Godthab"
     // uuid  -->  "aaad1003-4ecc-4c32-8372-549cee76a7dd"
@@ -164,6 +166,8 @@ class DataGenerator(private val randomService: RandomService) {
             return format.format(randomDateTime())
         } else if (type == "timestamp") {
             return randomDateTime().toEpochSecond().toString()
+        } else if (type == "weekday") {
+            return randomService.weekday()
         } else if (type == "timezone") {
             return randomService.timezone()
         } else if (type == "country") {
