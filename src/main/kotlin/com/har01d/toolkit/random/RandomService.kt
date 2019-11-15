@@ -27,6 +27,7 @@ class RandomService(private val context: ApplicationContext) {
     private lateinit var countries: List<String>
     private lateinit var companies: List<String>
     private lateinit var websites: List<String>
+    private lateinit var mimes: List<String>
 
     @PostConstruct
     fun init() {
@@ -34,6 +35,7 @@ class RandomService(private val context: ApplicationContext) {
         countries = context.getResource("classpath:data/countries.txt").readLines()
         companies = context.getResource("classpath:data/companies.txt").readLines()
         websites = context.getResource("classpath:data/websites.txt").readLines()
+        mimes = context.getResource("classpath:data/mimes.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
     }
 
@@ -54,6 +56,8 @@ class RandomService(private val context: ApplicationContext) {
     fun company() = companies[ThreadLocalRandom.current().nextInt(companies.size)]
 
     fun domain() = websites[ThreadLocalRandom.current().nextInt(websites.size)]
+
+    fun mime() = mimes[ThreadLocalRandom.current().nextInt(mimes.size)]
 
     fun url(suffixLen: Int = 1): String {
         var text = "https://" + word() + "." + domain()
