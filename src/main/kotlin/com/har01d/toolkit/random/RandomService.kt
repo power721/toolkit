@@ -28,6 +28,7 @@ class RandomService(private val context: ApplicationContext) {
     private lateinit var companies: List<String>
     private lateinit var websites: List<String>
     private lateinit var mimes: List<String>
+    private lateinit var files: List<String>
 
     @PostConstruct
     fun init() {
@@ -36,6 +37,7 @@ class RandomService(private val context: ApplicationContext) {
         companies = context.getResource("classpath:data/companies.txt").readLines()
         websites = context.getResource("classpath:data/websites.txt").readLines()
         mimes = context.getResource("classpath:data/mimes.txt").readLines()
+        files = context.getResource("classpath:data/files.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
     }
 
@@ -58,6 +60,27 @@ class RandomService(private val context: ApplicationContext) {
     fun domain() = websites[ThreadLocalRandom.current().nextInt(websites.size)]
 
     fun mime() = mimes[ThreadLocalRandom.current().nextInt(mimes.size)]
+
+    fun file(): String {
+        var text = word()
+        val random = ThreadLocalRandom.current()
+        val count = random.nextInt(5)
+        val seps = arrayOf("", "_", "-", " ")
+        val sep = seps[random.nextInt(seps.size)]
+        for (i in 1..count) {
+            text += if (sep.isEmpty()) {
+                word().capitalize()
+            } else {
+                sep + word()
+            }
+        }
+        text += files[ThreadLocalRandom.current().nextInt(files.size)]
+        return if (sep.isEmpty()) {
+            text.capitalize()
+        } else {
+            text
+        }
+    }
 
     fun url(suffixLen: Int = 1): String {
         var text = "https://" + word() + "." + domain()

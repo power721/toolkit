@@ -21,7 +21,7 @@ class DataGenerator(private val randomService: RandomService) {
                 "password\\[(\\d+)\\]|password|" +
                 "hex\\[(\\d+)\\]|hex|" +
                 "datetime|date|timezone|timestamp|time|" +
-                "uuid|email|color|ip|mac|version|domain|mime|" +
+                "uuid|email|color|ip|mac|version|domain|mime|file|" +
                 "url\\[(\\d+)\\]|url|" +
                 "size\\[(.+)\\]|size|" +
                 "hostname\\[(.+)\\]|hostname|" +
@@ -100,7 +100,7 @@ class DataGenerator(private val randomService: RandomService) {
     // ip  -->  "10.121.235.200", "216.58.196.174"
     // mac  -->  "00:50:56:af:e5:bf"
     // version  -->  "6.1.10", "1.8.201", "10.16.3"
-    // file
+    // file  -->  "index.html", "app.css"
     // mime  --> "application/json", "text/html"
     // enum[E1,E2,E3]  -->  "E3", "E1", "E2"
     // size, size[MB,GB]  --> "5 MB", "60 GB", "128 MB"
@@ -178,6 +178,8 @@ class DataGenerator(private val randomService: RandomService) {
             return randomService.domain()
         } else if (type == "mime") {
             return randomService.mime()
+        } else if (type == "file") {
+            return randomService.file()
         } else if (type == "url") {
             var length = 1
             if (params != null) {
