@@ -18,7 +18,7 @@ class RandomService(private val context: ApplicationContext) {
     companion object {
         private val CHARS = "abcdefghijklmnopqrstuvwxyz".toCharArray()
         private val WEEKDAYS = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu", ".io")
+        private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu", ".io", ".tv")
         private val COLORS = arrayOf("white", "silver", "gray", "black", "red", "maroon", "yellow", "olive", "lime", "green", "aqua", "teal", "blue", "navy", "fuchsia", "purple",
                 "pink", "salmon", "crimson", "firebrick", "tomato", "coral", "orange", "moccasin", "gold", "brown", "cyan", "violet", "indigo")
     }
@@ -29,7 +29,6 @@ class RandomService(private val context: ApplicationContext) {
     private lateinit var names: List<String>
     private lateinit var countries: List<String>
     private lateinit var companies: List<String>
-    private lateinit var websites: List<String>
     private lateinit var mimes: List<String>
     private lateinit var files: List<String>
 
@@ -38,7 +37,6 @@ class RandomService(private val context: ApplicationContext) {
         words = context.getResource("classpath:data/words.txt").readLines()
         countries = context.getResource("classpath:data/countries.txt").readLines()
         companies = context.getResource("classpath:data/companies.txt").readLines()
-        websites = context.getResource("classpath:data/websites.txt").readLines()
         mimes = context.getResource("classpath:data/mimes.txt").readLines()
         files = context.getResource("classpath:data/files.txt").readLines()
         names = context.getResource("classpath:data/names.txt").readLines().map { it.capitalize() }
@@ -60,7 +58,7 @@ class RandomService(private val context: ApplicationContext) {
 
     fun company() = companies[random.nextInt(companies.size)]
 
-    fun domain() = websites[random.nextInt(websites.size)]
+    fun domain() = word() + DOMAINS[random.nextInt(DOMAINS.size)]
 
     fun mime() = mimes[random.nextInt(mimes.size)]
 
@@ -215,7 +213,17 @@ class RandomService(private val context: ApplicationContext) {
     }
 
     fun email(): String {
-        return name(true).replace(' ', '.') + '@' + word() + DOMAINS[random.nextInt(DOMAINS.size)]
+        return username(true) + '@' + word() + DOMAINS[random.nextInt(DOMAINS.size)]
+    }
+
+    fun username(email: Boolean = false): String {
+        return when (random.nextInt(5)) {
+            1 -> word()
+            2 -> word() + number(1, 1000)
+            3 -> if (email) name(true).replace(' ', '.').toLowerCase() else name().toLowerCase() + number(1, 1000)
+            4 -> name().toLowerCase() + number(1, 1000)
+            else -> name().toLowerCase()
+        }
     }
 
     fun hostname(pool: List<String> = listOf()): String {
