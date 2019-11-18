@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
 import java.security.SecureRandom
+import java.time.Month
 import java.time.ZoneId
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -18,6 +19,7 @@ class RandomService(private val context: ApplicationContext) {
     companion object {
         private val CHARS = "abcdefghijklmnopqrstuvwxyz".toCharArray()
         private val WEEKDAYS = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        private val MONTHS = Month.values()
         private val DOMAINS = arrayOf(".com", ".net", ".org", ".edu", ".io", ".tv")
         private val COLORS = arrayOf("white", "silver", "gray", "black", "red", "maroon", "yellow", "olive", "lime", "green", "aqua", "teal", "blue", "navy", "fuchsia", "purple",
                 "pink", "salmon", "crimson", "firebrick", "tomato", "coral", "orange", "moccasin", "gold", "brown", "cyan", "violet", "indigo")
@@ -94,6 +96,8 @@ class RandomService(private val context: ApplicationContext) {
     fun color() = COLORS[random.nextInt(COLORS.size)]
 
     fun weekday() = WEEKDAYS[random.nextInt(WEEKDAYS.size)]
+
+    fun month() = MONTHS[random.nextInt(MONTHS.size)].name.toLowerCase().capitalize()
 
     fun name(full: Boolean = false): String {
         val random = ThreadLocalRandom.current()
