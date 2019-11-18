@@ -80,7 +80,7 @@ class DataGenerator(private val randomService: RandomService) {
     // date  -->  "2019-09-25","2016-11-07", "2012-12-31"
     // time  -->  "12:05:00", "20:35:19", "09:15:36"
     // datetime  -->  "2019-04-25 10:23:12", "2017-12-10 15:35:12"
-    // month  --> ""
+    // month  -->  "November", "April"
     // weekday  -->  "Friday", "Monday"
     // timestamp  -->  1573523117, 1490141289
     // timezone  -->  "Asia/Taipei", "America/Godthab"

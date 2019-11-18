@@ -221,11 +221,13 @@ class RandomService(private val context: ApplicationContext) {
     }
 
     fun username(email: Boolean = false): String {
-        return when (random.nextInt(5)) {
+        return when (random.nextInt(7)) {
             1 -> word()
             2 -> word() + number(1, 1000)
-            3 -> if (email) name(true).replace(' ', '.').toLowerCase() else name().toLowerCase() + number(1, 1000)
-            4 -> name().toLowerCase() + number(1, 1000)
+            3 -> if (email) name(true).replace(' ', '.') else name().toLowerCase() + number(1, 1000)
+            4 -> lorem(5, 10)
+            5 -> lorem(3, 7) + number(1, 1000)
+            6 -> name().toLowerCase() + number(1, 1000)
             else -> name().toLowerCase()
         }
     }
